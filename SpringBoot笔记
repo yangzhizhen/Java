@@ -7,5 +7,90 @@ JDK1.8
 Maven3.3.9 mvn -v可以在cmd下查看Maven版本
 IDEA2017
 SpringBoot 1.5.9.Release
+1、创建Maven工程
+2、导入Spring Boot依赖
+3、编写主程序
+psvm 快速写main方法
+//来标注一个主程序类，说明这是一个Spring Boot
+@SpringBootApplication
+public class HelloWorld
+{
+    public static void main(String[] args)
+    {
+        //Spring应用启动起来
+        SpringApplication.run(HelloWorld.class, args);
+    }
+
+}
+4、编写相关的Controller和Services
+@Controller
+public class HelloController
+{
+    @ResponseBody
+    @RequestMapping("/hello")
+    public String hello()
+    {
+        return "Hello World";
+    }
+}
+5、运行主程序测试
+6、简化部署
+<!--这个插件可以将应用打包成一个可执行的jar包；-->
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
+    </plugins>
+</build>
+cmd下执行java -jar spring-boot-01-1.0-SNAPSHOT.jar
+探究
+1、POM文件
+a. 父项目
+<parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.2.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+ </parent>
+ 它的父项目是
+ <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-dependencies</artifactId>
+    <version>2.1.2.RELEASE</version>
+    <relativePath>../../spring-boot-dependencies</relativePath>
+</parent>
+它来真正管理Spring Boot应用里面所有的依赖版本
+Spring Boot的版本仲裁中心
+以后导入依赖默认不需要写版本，没有在dependencies里面管理的依然需要声明版本号
+b. 导入的依赖
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+spring-boot-starter-web
+spring-boot-starter : spring-boot场景启动器；帮我们导入了web模块正常运行所依赖的组件
+Spring Boot将所有的功能场景都抽取出来，做成一个一个的starters（启动器），只需要在项目里引入这些starter相关场景的所有依赖都会导入进来。要用什么功能就导入什么场景启动器。
+
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
