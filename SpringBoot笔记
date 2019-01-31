@@ -2,6 +2,10 @@ Spring Boot J2EE一站式解决方案
 Spring Cloud 分布式整体解决方案
 优点：
 starters自动依赖与版本控制
-
+环境：
+JDK1.8
+Maven3.3.9 mvn -v可以在cmd下查看Maven版本
+IDEA2017
+SpringBoot 1.5.9.Release
 
 
